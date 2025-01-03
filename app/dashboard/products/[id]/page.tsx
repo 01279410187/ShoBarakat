@@ -13,13 +13,10 @@ async function getData(productId: string) {
   }
   return data;
 }
+export type paramsType = Promise<{ id: string }>;
 
-export default async function EditProduct({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const data = await getData((await params).id);
+export default async function EditProduct(props: { params: paramsType }) {
+  const data = await getData((await props.params).id);
 
   return <EditForm data={data} />;
 }
