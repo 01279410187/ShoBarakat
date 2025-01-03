@@ -90,11 +90,12 @@ async function getData(productCategory: string) {
   }
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { name: string };
-}) {
+export default async function CategoryPage(
+  props: {
+    params: Promise<{ name: string }>;
+  }
+) {
+  const params = await props.params;
   const { data, title } = await getData(params?.name);
   return (
     <>

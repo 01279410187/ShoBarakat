@@ -16,10 +16,11 @@ async function getData(productId: string) {
 
 // Define the correct type for params
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export default async function EditProduct({ params }: PageProps) {
+export default async function EditProduct(props: PageProps) {
+  const params = await props.params;
   // Await params to satisfy Next.js's requirement
   const resolvedParams = await Promise.resolve(params);
 
