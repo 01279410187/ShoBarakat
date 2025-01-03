@@ -43,12 +43,13 @@ async function getData(productId: string) {
   return data;
 }
 
-export default async function EditProduct({
-  params,
-}: {
-  params: { id: string }; // Corrected: params is a plain object, not a Promise
-}) {
-  const data = await getData(params.id); // Directly access params.id
+// Define the correct type for params
+type PageProps = {
+  params: { id: string };
+};
+
+export default async function EditProduct({ params }: PageProps) {
+  const data = await getData(params.id);
 
   return <EditForm data={data} />;
 }
