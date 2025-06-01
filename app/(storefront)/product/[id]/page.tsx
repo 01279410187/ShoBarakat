@@ -31,9 +31,8 @@ type PageProps = {
   };
 };
 
-export default async function GetSingleProduct({
-  params,
-} : PageProps) {
+export default async function GetSingleProduct(props: PageProps) {
+  const { params } = props;
   const data = await getData(params.id);
   const addProducttoShoppingCart = addItem.bind(null, data.id);
 
