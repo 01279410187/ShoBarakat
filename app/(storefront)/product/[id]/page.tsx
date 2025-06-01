@@ -25,12 +25,16 @@ async function getData(productId: string) {
   return data;
 }
 
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
 export default async function GetSingleProduct({
   params,
-}: {
-  params: { id: string };
-}) {
-  const data = await getData((await params).id);
+} : PageProps) {
+  const data = await getData(params.id);
   const addProducttoShoppingCart = addItem.bind(null, data.id);
 
   return (
